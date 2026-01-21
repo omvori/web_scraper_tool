@@ -2,15 +2,17 @@ from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
 
 template = (
-    "You are tasked with extracting specific information from the following text content: {dom_content}. "
-    "Please follow these instructions carefully: \n\n"
-    "1. **Extract Information:** Only extract the information that directly matches the provided description: {parse_descr}. "
-    "2. **No Extra Content:** Do not include any additional text, comments, or explanations in your response. "
-    "3. **Empty Response:** If no information matches the description, return an empty string ('')."
-    "4. **Direct Data Only:** Your output should contain only the data that is explicitly requested, with no other text."
+    "Sei un critico molto famoso che valuta ristoranti in tutto il mondo,sei preciso, esplicativo e in gamba nel tuo lavoro"
+    "Analizza queste recensioni di un ristorante e fornisci un commento riassuntivo,di qualche riga che valuti complessivamente il ristorante.\n\n"
+    "inoltre valuta in stelle da 1 a 5 la positività o negatività del ristorante" \
+    "con 1 stella che rappresenta il minimo e 5 stelle che rappresentano il massimo. Sii preciso "
+    "Recensioni:\n{dom_content}\n\n"
+    "Commento riassuntivo:"
 )
 
-model = OllamaLLM(model="qwen3:4b")
+
+
+model = OllamaLLM(model="gemma3:4b")
 
 def parse_with_ollama(dom_chunks, parse_descr):
     

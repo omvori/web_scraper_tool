@@ -36,4 +36,3 @@ if "dom_content" in st.session_state:
 
 
 
-#Analizzando le recensioni lasciate su questo sito riassumi una valutazione del ristorante descrivendolo cercando di capire l'umore generale delle recensioni lasciate. NON INVENTARE e ATTIENITI ALLA RICHIESTA

@@ -14,7 +14,6 @@ def scrape_web(website):
         print("page loaded")
         time.sleep(5)
 
-        
         html= driver.page_source
 
         return html
