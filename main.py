@@ -1,10 +1,40 @@
 import streamlit as st
 from scrape import scrape_web,split_dom_content,clean_body_content,extract_body_content
 from parse import parse_with_ollama
+import pandas as pd
+from io import StringIO
+import json
 
 st.title("Ai web scraper")
-url = st.text_input("Inserisci un URL")
+st.write("Upload a JSON file or scrape a site")
 
+########JSON reading#######
+
+uploaded_file = st.file_uploader("Upload a file (JSON only)")
+
+if uploaded_file is not None and json:
+    
+    data = pd.read_json(uploaded_file)
+    
+    st.write(data)
+
+    if data is not None: 
+        json_description = st.text_area("Descrivi quale informazione vuoi recuperare")
+
+        if st.button("Analizza il file"):
+            if json_description:
+                st.write("Analizzo..")
+                
+                json_chunks = split_dom_content(data)
+                result = parse_with_ollama(json_chunks,json_description)
+
+                st.write(result)
+
+
+        
+#######Web scraping#######
+
+url = st.text_input("Inserisci un URL")
 
 if st.button("Scrape Site"):
     st.write("Scraping...")
